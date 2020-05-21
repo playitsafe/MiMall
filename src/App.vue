@@ -7,6 +7,7 @@
 <script>
 // import axios from 'axios';
 // import jsonp from 'jsonp';
+// import storage from '@/storage';
 
 export default {
   name: 'App',
@@ -19,7 +20,7 @@ export default {
     }
   },
   mounted () {
-
+    // storage.clear('a', 'user');
   }
 }
 </script>
