@@ -6,8 +6,16 @@ import VueAxios from 'vue-axios'
 
 import App from './App.vue'
 
+// mock 开关
+const mock = true;
+// import是预编译加载，require执行时才加载,拦截请求转发至mock
+// 如果用import，会一律拦截转发至mock,所以浏览器看不到XHR请求
+if (mock) {
+  require('./mock/api');
+}
+
 // 根据前端跨域方式作调整
-// axios.defaults.baseURL = '/api';
+axios.defaults.baseURL = '/api';
 axios.defaults.timeout = 8000;
 // 根据环境变量获取不同请求地址
 // axios.defaults.baseURL = env.baseURL;

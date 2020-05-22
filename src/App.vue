@@ -22,9 +22,20 @@ export default {
   mounted () {
     // storage.clear('a', 'user');
     // mock 1=>local json file
+    /**
     this.axios.get('/mock/user/login.json').then((res) => {
       this.res = res;
     });
+    // mock 2: 3rd party online mock
+    this.axios.get('/user/login').then((res) => {
+      this.res = res;
+    });
+    */
+    //mock 3 local mock js
+    this.axios.get('/user/login').then((res) => {
+      this.res = res;
+    });
+
   }
 }
 </script>
