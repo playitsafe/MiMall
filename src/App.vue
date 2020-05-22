@@ -16,11 +16,15 @@ export default {
   },
   data () {
     return {
-
+      res: {}
     }
   },
   mounted () {
     // storage.clear('a', 'user');
+    // mock 1=>local json file
+    this.axios.get('/mock/user/login.json').then((res) => {
+      this.res = res;
+    });
   }
 }
 </script>
