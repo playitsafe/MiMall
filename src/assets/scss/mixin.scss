@@ -1,0 +1,15 @@
+//Flex layout
+@mixin flex($hor:space-between, $ver:center) {
+  display: flex;
+  justify-content: $hor;
+  align-items: $ver;
+}
+
+@mixin bgImg($w:0, $h:0, $img:'', $size:contain) {
+  display: inline-block;
+  width: $w;
+  height: $h;
+  background: url($img) no-repeat center;
+  background-size: $size;
+  // margin-right: 4px;
+}
