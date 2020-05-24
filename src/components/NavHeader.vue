@@ -10,9 +10,11 @@
           <a href="javascript:;">Cloud Service</a>
         </div>
         <div class="topbar-user">
-          <a href="javascript:;">Login</a>
-          <a href="javascript:;">Register</a>
-          <a href="javascript:;" class="my-cart">
+          <a href="javascript:;" v-if="userName">{{userName}}</a>
+          <a href="javascript:;" v-if="userName">My Orders</a>
+          <a href="javascript:;" v-if="!userName" @click="login">Login</a>
+          <a href="javascript:;" v-if="!userName">Register</a>
+          <a href="javascript:;" class="my-cart" @click="goToCart">
             <span class="icon-cart"></span>My Cart
           </a>
         </div>
@@ -29,64 +31,15 @@
             <span>Mi Phone</span>
             <div class="children">
               <ul>
-                <li class="product">
+                <li v-for="(item,index) in phoneList" :key="index"
+                  class="product">
                   <!-- open new window -->
-                  <a href="" target="_blank">
+                  <a :href="'/#/product/'+item.id" target="_blank">
                     <div class="pro-img">
-                      <img src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/3bf20f1df3f2e22c5b29ff07634f3c59.png?thumb=1&w=160&h=110&f=webp&q=90" alt="">
+                      <img :src="item.mainImage" :alt="item.subtitle">
                     </div>
-                    <div class="pro-name">Mi Phone CC9</div>
-                    <div class="pro-price">$300</div>
-                  </a>
-                </li>
-                <li class="product">
-                  <!-- open new window -->
-                  <a href="" target="_blank">
-                    <div class="pro-img">
-                      <img src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/3bf20f1df3f2e22c5b29ff07634f3c59.png?thumb=1&w=160&h=110&f=webp&q=90" alt="">
-                    </div>
-                    <div class="pro-name">Mi Phone CC9</div>
-                    <div class="pro-price">$300</div>
-                  </a>
-                </li>
-                <li class="product">
-                  <!-- open new window -->
-                  <a href="" target="_blank">
-                    <div class="pro-img">
-                      <img src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/3bf20f1df3f2e22c5b29ff07634f3c59.png?thumb=1&w=160&h=110&f=webp&q=90" alt="">
-                    </div>
-                    <div class="pro-name">Mi Phone CC9</div>
-                    <div class="pro-price">$300</div>
-                  </a>
-                </li>
-                <li class="product">
-                  <!-- open new window -->
-                  <a href="" target="_blank">
-                    <div class="pro-img">
-                      <img src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/3bf20f1df3f2e22c5b29ff07634f3c59.png?thumb=1&w=160&h=110&f=webp&q=90" alt="">
-                    </div>
-                    <div class="pro-name">Mi Phone CC9</div>
-                    <div class="pro-price">$300</div>
-                  </a>
-                </li>
-                <li class="product">
-                  <!-- open new window -->
-                  <a href="" target="_blank">
-                    <div class="pro-img">
-                      <img src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/3bf20f1df3f2e22c5b29ff07634f3c59.png?thumb=1&w=160&h=110&f=webp&q=90" alt="">
-                    </div>
-                    <div class="pro-name">Mi Phone CC9</div>
-                    <div class="pro-price">$300</div>
-                  </a>
-                </li>
-                <li class="product">
-                  <!-- open new window -->
-                  <a href="" target="_blank">
-                    <div class="pro-img">
-                      <img src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/3bf20f1df3f2e22c5b29ff07634f3c59.png?thumb=1&w=160&h=110&f=webp&q=90" alt="">
-                    </div>
-                    <div class="pro-name">Mi Phone CC9</div>
-                    <div class="pro-price">$300</div>
+                    <div class="pro-name">{{item.name}}</div>
+                    <div class="pro-price">{{item.price | currency}}</div>
                   </a>
                 </li>
               </ul>
@@ -121,12 +74,42 @@ export default {
   name: 'nav-header',
   data() {
     return {
-      userName: 'Aaron',
+      userName: '',
       phoneList: []
     }
   },
+
+  filters: {
+    currency(val) {
+      if(!val) return 0.00;
+      return '$' + val.toFixed(2);
+    }
+  },
+
   mounted() {
-    
+    this.getProductList();
+  },
+
+  methods: {
+    login () {
+      this.$router.push('/login');
+    },
+
+    getProductList() {
+      this.axios.get('/products', {
+        params: {
+          categoryId: 100012
+        }
+      }).then(res => {
+        if (res.list.length > 6) {
+          this.phoneList = res.list.slice(0,6);
+        }
+      });
+    },
+
+    goToCart() {
+      this.$router.push('/cart');
+    }
   }
 }
 </script>

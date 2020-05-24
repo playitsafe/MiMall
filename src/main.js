@@ -7,7 +7,7 @@ import VueAxios from 'vue-axios'
 import App from './App.vue'
 
 // mock 开关
-const mock = true;
+const mock = false;
 // import是预编译加载，require执行时才加载,拦截请求转发至mock
 // 如果用import，会一律拦截转发至mock,所以浏览器看不到XHR请求
 if (mock) {
