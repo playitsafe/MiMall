@@ -28,7 +28,68 @@
           <div class="item-menu">
             <span>Mi Phone</span>
             <div class="children">
-
+              <ul>
+                <li class="product">
+                  <!-- open new window -->
+                  <a href="" target="_blank">
+                    <div class="pro-img">
+                      <img src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/3bf20f1df3f2e22c5b29ff07634f3c59.png?thumb=1&w=160&h=110&f=webp&q=90" alt="">
+                    </div>
+                    <div class="pro-name">Mi Phone CC9</div>
+                    <div class="pro-price">$300</div>
+                  </a>
+                </li>
+                <li class="product">
+                  <!-- open new window -->
+                  <a href="" target="_blank">
+                    <div class="pro-img">
+                      <img src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/3bf20f1df3f2e22c5b29ff07634f3c59.png?thumb=1&w=160&h=110&f=webp&q=90" alt="">
+                    </div>
+                    <div class="pro-name">Mi Phone CC9</div>
+                    <div class="pro-price">$300</div>
+                  </a>
+                </li>
+                <li class="product">
+                  <!-- open new window -->
+                  <a href="" target="_blank">
+                    <div class="pro-img">
+                      <img src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/3bf20f1df3f2e22c5b29ff07634f3c59.png?thumb=1&w=160&h=110&f=webp&q=90" alt="">
+                    </div>
+                    <div class="pro-name">Mi Phone CC9</div>
+                    <div class="pro-price">$300</div>
+                  </a>
+                </li>
+                <li class="product">
+                  <!-- open new window -->
+                  <a href="" target="_blank">
+                    <div class="pro-img">
+                      <img src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/3bf20f1df3f2e22c5b29ff07634f3c59.png?thumb=1&w=160&h=110&f=webp&q=90" alt="">
+                    </div>
+                    <div class="pro-name">Mi Phone CC9</div>
+                    <div class="pro-price">$300</div>
+                  </a>
+                </li>
+                <li class="product">
+                  <!-- open new window -->
+                  <a href="" target="_blank">
+                    <div class="pro-img">
+                      <img src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/3bf20f1df3f2e22c5b29ff07634f3c59.png?thumb=1&w=160&h=110&f=webp&q=90" alt="">
+                    </div>
+                    <div class="pro-name">Mi Phone CC9</div>
+                    <div class="pro-price">$300</div>
+                  </a>
+                </li>
+                <li class="product">
+                  <!-- open new window -->
+                  <a href="" target="_blank">
+                    <div class="pro-img">
+                      <img src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/3bf20f1df3f2e22c5b29ff07634f3c59.png?thumb=1&w=160&h=110&f=webp&q=90" alt="">
+                    </div>
+                    <div class="pro-name">Mi Phone CC9</div>
+                    <div class="pro-price">$300</div>
+                  </a>
+                </li>
+              </ul>
             </div>
           </div>
           <div class="item-menu">
@@ -57,13 +118,23 @@
 
 <script>
 export default {
-  name: 'nav-header'
+  name: 'nav-header',
+  data() {
+    return {
+      userName: 'Aaron',
+      phoneList: []
+    }
+  },
+  mounted() {
+    
+  }
 }
 </script>
 
 <style lang="scss">
 @import '../assets/scss/base.scss';
 @import '../assets/scss/mixin.scss';
+@import '../assets/scss/config.scss';
 
 .header {
   .nav-topbar {
@@ -106,6 +177,8 @@ export default {
   .nav-header {
     .container {
       height: 112px;
+      position: relative;
+
       @include flex();
 
       .header-logo {
@@ -135,11 +208,6 @@ export default {
           &::after {
             content: '';
             @include bgImg(55px, 55px, '/imgs/mi-home.png');
-            /* display: inline-block;
-            width: 55px;
-            height: 55px;
-            background: url('/imgs/mi-home.png') no-repeat center;
-            background-size: contain; */
           }
 
           &:hover::before {
@@ -167,8 +235,79 @@ export default {
           }
 
           &:hover {
+            color: $colorA;
 
+            /* onhover display height */
+            .children {
+              height: 220px;
+              opacity: 1;
+              box-shadow: 0px 7px 6px 0px rgba(0,0,0,.11);
+            }
           }
+
+          .children {
+            text-align: center;
+            position: absolute;
+            top: 112px;
+            left: 0;
+            width: 1226px;
+            border-top: #E5E5E5 1px solid;
+            height: 0px;
+            overflow: hidden;
+            opacity: 0;
+            transition: height .5s;
+            /* z-index: 10;
+            background-color: #ffffff; */
+
+            .product {
+              float: left;
+              width: 16.6%;
+              height: 220px;
+              font-size: 12px;
+              line-height: 12px;
+              position: relative;
+
+              &::before {
+              content: '';
+              position: absolute;
+              top: 28px;
+              right: 0;
+              border: .5px solid $colorF;
+              height: 100px;
+              width: 0;
+              }
+
+              &:last-child::before {
+                display: none;
+              }
+
+              a {
+                display: inline-block;
+              }
+
+              .pro-img {
+                height: 137px;
+              }
+
+              .pro-name {
+                font-weight: bold;
+                margin-top: 19px;
+                margin-bottom: 8px;
+                color: $colorB;
+              }
+
+              .pro-price {
+                color: $colorA;
+              }
+
+              img {
+                width: auto;
+                height: 111px;
+                margin-top: 26px;
+              }
+            }
+          }
+
         }
       }
 
