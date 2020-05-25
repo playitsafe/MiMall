@@ -239,8 +239,8 @@ export default {
             overflow: hidden;
             opacity: 0;
             transition: height .5s;
-            /* z-index: 10;
-            background-color: #ffffff; */
+            /* z-index: 10;*/
+            background-color: #ffffff; 
 
             .product {
               float: left;
