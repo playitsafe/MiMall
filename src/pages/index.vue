@@ -7,35 +7,44 @@
           <ul class="menu-wrap">
             <li class="menu-item">
               <a href="javascript:;">Phone SIM Card</a>
-              <div class="children"></div>
+              <div class="children">
+                <ul v-for="(item, index) in menuList" :key="index">
+                  <li v-for="(subItem, i) in item" :key="i">
+                    <a :href="subItem ? '/#/product'+subItem.id : ''">
+                      <img :src="subItem ? subItem.img : '/imgs/item-box-1.png'" alt="">
+                      {{subItem ? subItem.name : 'DefaultPhone'}}
+                    </a>
+                  </li>
+                </ul>
+              </div>
             </li>
             <li class="menu-item">
               <a href="javascript:;">TV SmartBox </a>
-              <div class="children"></div>
+              <div class="children1"></div>
             </li>
             <li class="menu-item">
               <a href="javascript:;">Laptop Tablet</a>
-              <div class="children"></div>
+              <div class="children1"></div>
             </li>
             <li class="menu-item">
               <a href="javascript:;">Home Appliance</a>
-              <div class="children"></div>
+              <div class="children1"></div>
             </li>
             <li class="menu-item">
               <a href="javascript:;">Outdoors</a>
-              <div class="children"></div>
+              <div class="children11"></div>
             </li>
             <li class="menu-item">
               <a href="javascript:;">Smart Router</a>
-              <div class="children"></div>
+              <div class="children1"></div>
             </li>
             <li class="menu-item">
               <a href="javascript:;">Bags</a>
-              <div class="children"></div>
+              <div class="children1"></div>
             </li>
             <li class="menu-item">
               <a href="javascript:;">Accessories</a>
-              <div class="children"></div>
+              <div class="children1"></div>
             </li>
           </ul>
         </div>
@@ -81,7 +90,7 @@ export default {
   data () {
     return {
       swiperOption: {
-        loop: true,
+        loop: false,
         autoplay: true,
         effect : 'coverflow',
         navigation: {
@@ -114,6 +123,32 @@ export default {
           id: '45',
           img: '/imgs/slider/slide-5.jpg'
         }
+      ],
+      // 6 * 4 grid
+      menuList: [
+        [
+          {
+            id: 30,
+            img: '/imgs/item-box-1.png',
+            name: 'MiPhone CC9'
+          },
+          {
+            id: 31,
+            img: '/imgs/item-box-2.png',
+            name: 'MiPhone 8'
+          },
+          {
+            id: 32,
+            img: '/imgs/item-box-3.jpg',
+            name: 'RedMi K20'
+          },
+          {
+            id: 33,
+            img: '/imgs/item-box-4.jpg',
+            name: '4G Zone'
+          },
+        ],
+        [0,0,0,0],[0,0,0,0],[0,0,0,0],[0,0,0,0],[0,0,0,0]
       ]
     }
   }
@@ -155,8 +190,14 @@ export default {
         .menu-item {
           height: 50px;
           line-height: 50px;
+          /* position: relative; */
+
           &:hover {
             background-color: $colorA;
+
+            .children {
+              display: block;
+            }
           }
 
           a {
@@ -173,6 +214,43 @@ export default {
               @include bgImg(10px, 15px, '/imgs/icon-arrow.png');
               top: 50%;
               transform: translateY(-50%);
+            }
+          }
+
+          .children {
+            display: none;
+            width: 962px;
+            height: 451px;
+            background-color: $colorG;
+            position: absolute;
+            top: 0;
+            left: 264px;
+            border: 1px solid $colorH;
+
+            ul {
+              display: flex;
+              justify-content: space-between;
+              height: 75px;
+
+              li {
+                height: 75px;
+                line-height: 75px;
+                flex: 1;
+                padding-left: 23px;
+
+                a {
+                  color: $colorB;
+
+                  img {
+                    width: 42px;
+                    height: 35px;
+                    vertical-align: middle;
+                    margin-right: 15px;
+                  }
+                }
+
+              }
+
             }
           }
         }
