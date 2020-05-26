@@ -98,11 +98,18 @@
       </div>
     </div>
     <ServiceBar />
+    <Modal title="Index Info" sureText="Checkout Cart"
+      btnType="1" modalType="middle" :showModal="true">
+      <template v-slot:body>
+        <p>Add Successfully</p>
+      </template>
+    </Modal>
   </div>
 </template>
 
 <script>
 import ServiceBar from '@/components/ServiceBar'
+import Modal from '@/components/Modal'
 import { Swiper, SwiperSlide } from 'vue-awesome-swiper'
 import 'swiper/css/swiper.css'
 
@@ -111,7 +118,8 @@ export default {
   components: {
     ServiceBar,
     Swiper,
-    SwiperSlide
+    SwiperSlide,
+    Modal
   },
   data () {
     return {
@@ -194,7 +202,8 @@ export default {
           img: '/imgs/ads/ads-4.jpg'
         }
       ],
-      phoneList: []
+      phoneList: [],
+      showModal: true
     }
   },
   
@@ -207,9 +216,10 @@ export default {
       this.axios.get('/products', {
         params: {
           categoryId: 100012,
-          pageSize: 8
+          pageSize: 14
         }
       }).then(res => {
+        res.list = res.list.slice(6,14)
         this.phoneList = [res.list.slice(0,4), res.list.slice(4,8)]
       });
     }

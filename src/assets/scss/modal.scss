@@ -1,0 +1,47 @@
+.modal {
+  @include position(fixed);
+  z-index: 20;
+
+  .mask {
+    @include position(fixed);
+    background-color: rgba(0,0,0,.6);
+    // opacity: .6;
+  }
+
+  .modal-dialog {
+    @include position(absolute, 40%, 50%, 660px, auto);
+    background-color: $colorG;
+    transform: translate(-50%, -50%);
+
+    .modal-header {
+      height: 60px;
+      line-height: 60px;
+      background-color: $colorJ;
+      padding: 0 25px;
+      font-size: 16px;
+
+      .icon-close {
+        @include positionImg(absolute, 23px, 25px, 14px, 14px, '/imgs/icon-close.png');
+
+        &:hover {
+          transform: scale(1.3);
+          transition: transform .3s;
+        }
+      }
+    }
+
+    .modal-body {
+      padding: 42px 40px 54px;
+      font-size: 14px;
+    }
+
+    .modal-footer {
+      height: 82px;
+      line-height: 82px;
+      text-align: center;
+      background-color: $colorJ;
+    }
+
+  }
+
+}
