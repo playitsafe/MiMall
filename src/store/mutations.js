@@ -1,0 +1,13 @@
+/**
+ * Vuex Mutation
+ */
+
+export default {
+  saveUserName (state, username) {
+    state.userName = username
+  },
+
+  saveCartCount (state, count) {
+    state.cartCount = count
+  }
+}

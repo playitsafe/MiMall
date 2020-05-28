@@ -15,7 +15,7 @@
           <a href="javascript:;" v-if="!userName" @click="login">Login</a>
           <a href="javascript:;" v-if="!userName">Register</a>
           <a href="javascript:;" class="my-cart" @click="goToCart">
-            <span class="icon-cart"></span>My Cart
+            <span class="icon-cart"></span>My Cart({{cartCount}})
           </a>
         </div>
       </div>
@@ -66,13 +66,27 @@
 </template>
 
 <script>
+import { mapState } from 'vuex';
 export default {
   name: 'nav-header',
   data() {
     return {
-      userName: '',
+      // userName: this.$store.state.userName,
       phoneList: []
     }
+  },
+
+  computed: {
+    // computed fpr api fetch
+    // userName() {
+    //   return this.$store.state.userName;
+    // },
+
+    // cartCount() {
+    //   return this.$store.state.cartCount;
+    // },
+
+    ...mapState(['userName', 'cartCount'])
   },
 
   filters: {
