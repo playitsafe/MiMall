@@ -13,6 +13,7 @@
           <a href="javascript:;" v-if="userName">{{userName}}</a>
           <a href="javascript:;" v-if="userName">My Orders</a>
           <a href="javascript:;" v-if="!userName" @click="login">Login</a>
+          <a href="javascript:;" v-if="userName" @click="logout">log Out</a>
           <a href="javascript:;" v-if="!userName">Register</a>
           <a href="javascript:;" class="my-cart" @click="goToCart">
             <span class="icon-cart"></span>My Cart({{cartCount}})
@@ -103,6 +104,15 @@ export default {
   methods: {
     login () {
       this.$router.push('/login');
+    },
+
+    logout () {
+      this.axios.post('/user/logout').then(() => {
+        this.$cookie.set('userId', '',{expires: '-1'}); // expires immediately
+        this.$store.dispatch('saveUserName', '');
+        this.$store.dispatch('saveCartCount', '0');
+        alert('logout successfully');
+      });
     },
 
     getProductList() {

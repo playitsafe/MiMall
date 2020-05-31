@@ -56,8 +56,10 @@ export default {
         username,
         password
       }).then((res)=>{
-        this.$cookie.set('userId',res.id, {expires:'1M'});
+        this.$cookie.set('userId',res.id, {expires:'Session'});
         // this.$store.dispatch('saveUserName',res.username);
+
+        // param use name
         this.saveUserName(res.username);
         this.$router.push({
           name:'index',
@@ -65,6 +67,16 @@ export default {
             from:'login'
           }
         });
+
+        // query use path
+        /**
+        this.$router.push({
+          path:'/index',
+          query:{
+            from:'login'
+          }
+        });
+         */
       })
     },
 
